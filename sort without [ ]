@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+void sort(int *a, int N) {
+	long i = 0, j = N;
+	int p;
+	p = *(a+N /2);
+	int temp1;
+	do {
+		while (*(a+i)< p) i++;
+		while (*(a+j)> p) j--;
+
+		if (i <= j) {
+			temp1 = *(a+i); *(a + i) = *(a + j); *(a + j) = temp1;
+			i++; j--;
+		}
+	} while (i <= j);
+	if (j > 0) sort(a, j);
+	if (N > i) sort(a + i, N - i);
+}
+int main(){
+	int n,x;
+	cin >> n ;
+	int *a = new int[n];
+	for (int i = 0; i<n; ++i) {
+			cin >> x;
+			*(a+i) = x;
+	}
+	sort(a, n - 1);
+	for (int i = 0; i < n; ++i) {
+		cout << *(a + i) << endl;
+	}
+	return 0;
+}
